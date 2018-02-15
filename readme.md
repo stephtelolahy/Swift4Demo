@@ -1,3 +1,10 @@
+Swift Demo
+-
+See official [Swift Programming language](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309)
+
+###Extensions
+Extensions add new functionality to an existing class, structure, enumeration, or protocol type
+
 
 Swift 4 new features
 -
