@@ -18,7 +18,7 @@ You can use protocol extensions to provide a default implementation to any metho
 
 When you define a protocol extension, you can specify constraints that conforming types must satisfy before the methods and properties of the extension are available.
 
-- Example: print array of menu that tags nothing in common [Burger, Drink, Dessert]
+- Example: manipulate array of things that have nothing in common [Burger, Drink, Dessert], protocol Displayable, Likable
 
 ### Generic functions
 
