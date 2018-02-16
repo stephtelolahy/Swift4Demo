@@ -16,8 +16,8 @@ Is a suite of behavior that can be adopted by class, struct or enumeration
 
 ### Data Encoding using Codable
 
+### Collection manipulations
 
 ### References
 - https://www.appcoda.com/swift4-changes/
-Collection manipulations
 - https://www.raywenderlich.com/163857/whats-new-swift-4
