@@ -1,4 +1,4 @@
-//: Playground - noun: a place where people can play
+// Idea: sort friends by proximity
 
 protocol Localisable {
     var distanceFromMe: Int {get}
@@ -27,5 +27,3 @@ let users = [User(name: "Daniella", department: 60),
              User(name: "Alex", department: 17)]
 let nearbyUsers = users.sortedByProximity().map{$0.name}
 print(nearbyUsers)
-
-// Idea: sort friends by proximity

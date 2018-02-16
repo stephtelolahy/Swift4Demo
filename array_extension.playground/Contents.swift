@@ -1,4 +1,4 @@
-//: Playground - noun: a place where people can play
+// Idea: update view if content changed
 
 extension Array where Element: Equatable {
     func containsSameElements(as other: [Element]) -> Bool {
@@ -12,4 +12,4 @@ let a2 = [2, 3, 1]
 let containsSameElements = a1.containsSameElements(as: a2)
 
 
-// Idea: update list of messages if content changed
+
