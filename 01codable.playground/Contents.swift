@@ -1,25 +1,66 @@
-struct CuriosityLog: Codable {
-    enum Discovery: String, Codable {
-        case rock, water, martian
-    }
-    
-    var sol: Int
-    var discoveries: [Discovery]
+import Foundation
+
+//------------------------------------------------------------------------------
+//                             CODABLE Protocol
+//------------------------------------------------------------------------------
+
+// MARK: Model
+
+struct Photo: Codable {
+    var title: String
+    var url: URL
+    var metaData: [String: String]
+    var type: PhotoType
+    var size: Size
+    var tags: [String]?
 }
 
-// Create a log entry for Mars sol 42
-let logSol42 = CuriosityLog(sol: 42, discoveries: [.rock, .rock, .rock, .rock])
+struct Size: Codable {
+    var height: Double
+    var width: Double
+}
 
-let jsonEncoder = JSONEncoder() // One currently available encoder
+enum PhotoType: String, Codable {
+    case flower
+    case animal
+    case fruit
+    case vegetable
+}
 
-// Encode the data
-let jsonData = try jsonEncoder.encode(logSol42)
-// Create a String from the data
-let jsonString = String(data: jsonData, encoding: .utf8) // "{"sol":42,"discoveries":["rock","rock","rock","rock"]}"
+// MARK: Decoding
 
-let jsonDecoder = JSONDecoder() // Pair decoder to JSONEncoder
+let jsonString = """
+{
+"type": "fruit",
+"size": {
+"width": 150,
+"height": 150
+},
+"title": "Apple",
+"url": "https:\\/\\/www.fruits.com\\/apple",
+"metaData": {
+"color": "green"
+},
+"tags": ["bio", "health"]
+}
+"""
+if let jsonData = jsonString.data(using: .utf8),
+    let photoObject = try? JSONDecoder().decode(Photo.self, from: jsonData) {
+    print(photoObject)
+}
 
-// Attempt to decode the data to a CuriosityLog object
-let decodedLog = try jsonDecoder.decode(CuriosityLog.self, from: jsonData)
-decodedLog.sol         // 42
-decodedLog.discoveries // [rock, rock, rock, rock]
+
+//------------------------------------------------------------------------------
+//                             Limitations
+//------------------------------------------------------------------------------
+
+class Person {
+    var name: String?
+    var age: Int?
+}
+
+//extension Person: Codable {
+//}
+
+// MARK: Custom date
+//https://useyourloaf.com/blog/swift-codable-with-custom-dates/
