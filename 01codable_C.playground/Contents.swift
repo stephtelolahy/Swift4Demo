@@ -54,9 +54,9 @@ extension DateFormatter {
 //        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.timeZone = TimeZone.current
-        print("current TimeZone: \(formatter.timeZone.abbreviation()!)")
-//        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(identifier: "UTC") //TimeZone.init(secondsFromGMT: 60*60*6)
+        print("TimeZone: \(formatter.timeZone.abbreviation()!)")
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
 }
