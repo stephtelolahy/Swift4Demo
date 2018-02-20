@@ -4,6 +4,22 @@ import Foundation
 //                             Basic JSON parsing in Swift
 //------------------------------------------------------------------------------
 
+let jsonString = """
+{
+"type": "fruit",
+"size": {
+"width": 150,
+"height": 150
+},
+"title": "Apple",
+"url": "https:\\/\\/www.fruits.com\\/apple",
+"metaData": {
+"color": "green"
+},
+"tags": ["bio", "health"]
+}
+"""
+
 struct Photo {
     var title: String
     var url: URL
@@ -24,24 +40,6 @@ enum PhotoType: String {
     case fruit
     case vegetable
 }
-
-// MARK: Decoding
-
-let jsonString = """
-{
-"type": "fruit",
-"size": {
-"width": 150,
-"height": 150
-},
-"title": "Apple",
-"url": "https:\\/\\/www.fruits.com\\/apple",
-"metaData": {
-"color": "green"
-},
-"tags": ["bio", "health"]
-}
-"""
 
 extension Size {
     init?(_ json: [String: Any]) {
