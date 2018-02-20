@@ -76,6 +76,6 @@ extension Photo {
 
 if let jsonData = jsonString.data(using: .utf8),
     let json = try JSONSerialization.jsonObject(with: jsonData) as? [String: Any],
-    let photoObject = Photo(json) {
-    print(photoObject)
+    let photo = Photo(json) {
+    print(photo)
 }

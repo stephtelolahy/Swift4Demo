@@ -42,6 +42,6 @@ enum PhotoType: String, Codable {
 }
 
 if let jsonData = jsonString.data(using: .utf8),
-    let photoObject = try? JSONDecoder().decode(Photo.self, from: jsonData) {
-    print(photoObject)
+    let photo = try? JSONDecoder().decode(Photo.self, from: jsonData) {
+    print(photo)
 }

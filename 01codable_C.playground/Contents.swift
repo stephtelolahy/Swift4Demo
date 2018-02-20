@@ -25,8 +25,8 @@ struct Photo: Codable {
 }
 
 if let jsonData = jsonString.data(using: .utf8),
-    let photoObject = try? JSONDecoder().decode(Photo.self, from: jsonData) {
-    print(photoObject)
+    let photo = try? JSONDecoder().decode(Photo.self, from: jsonData) {
+    print(photo)
 }
 
 //------------------------------------------------------------------------------
@@ -40,20 +40,23 @@ struct Podcast: Codable {
     let releaseDate: Date
 }
 
+// "releaseDate":"2017-11-16T11:30:00+00:00"
 let jsonPocast = """
 {
 "name":"Top Audio Podcasts",
-"releaseDate":"2017-11-16T11:13:30+00:00"
+"releaseDate":"2017-11-16T11:30:00.000-00:00"
 }
 """
 
 extension DateFormatter {
     static let iso8601Full: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+//        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.timeZone = TimeZone.current
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+        print("current TimeZone: \(formatter.timeZone.abbreviation()!)")
+//        formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
 }
@@ -63,7 +66,7 @@ decoder.dateDecodingStrategy = .iso8601
 decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
 if let jsonData = jsonPocast.data(using: .utf8),
     let podcast = try? decoder.decode(Podcast.self, from: jsonData) {
-    print(podcast.name + " " + "\(podcast.releaseDate)")
+    print("Release date: \(podcast.releaseDate)")
 } else {
     print("Failed mapping")
 }
