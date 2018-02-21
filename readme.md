@@ -6,7 +6,7 @@ A type that can convert itself into and out of an external representation (Json 
 
 - 01codable_A: Basic JSON parsing in Swift
 - 01codable_B: Using CODABLE Protocol
-- 01codable_C: Choosing Properties to Encode and Decode — CodingKeys, Custom date format, 
+- 01codable_C: Choosing Properties to Encode and Decode — CodingKeys, Custom date format, limitations
 
 ### Functions + tuple
 You can use a tuple type as the return type for a function to return multiple values as part of one compound return value.
@@ -20,13 +20,8 @@ You can use protocol extensions to provide a default implementation to any metho
 
 When you define a protocol extension, you can specify constraints that conforming types must satisfy before the methods and properties of the extension are available.
 
-- Example: manipulate array of things that have nothing in common [Burger, Drink, Dessert], protocol Displayable, Likable
+- Example: search people by criteria that have nothing in common [City, Food, Work], protocol Searchable
 
-### Generic functions
-
-Generic code enables you to write flexible, reusable functions and types that can work with any type, subject to requirements that you define.
-
-- Example: intanciate specific ViewController, TableViewCell from Storyboard
 
 ### References
 - https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309
