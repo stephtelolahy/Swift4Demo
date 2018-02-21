@@ -44,33 +44,26 @@ struct Podcast: Codable {
 let jsonPocast = """
 {
 "name":"Top Audio Podcasts",
-"releaseDate":"2017-11-16T11:30:00.000-00:00"
+"releaseDate":"2018-02-26"
 }
 """
 
 extension DateFormatter {
     static let iso8601Full: DateFormatter = {
         let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        formatter.dateFormat = "yyyy-MM-dd"
         formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.timeZone = TimeZone(identifier: "UTC") //TimeZone.init(secondsFromGMT: 60*60*6)
-        print("TimeZone: \(formatter.timeZone.abbreviation()!)")
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(identifier: "UTC")
         return formatter
     }()
 }
 
 let decoder = JSONDecoder()
-decoder.dateDecodingStrategy = .iso8601
 decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
 if let jsonData = jsonPocast.data(using: .utf8),
     let podcast = try? decoder.decode(Podcast.self, from: jsonData) {
     print("Release date: \(podcast.releaseDate)")
-} else {
-    print("Failed mapping")
 }
-
 
 //------------------------------------------------------------------------------
 //          Limitations: cannot conform to Codable in an extension

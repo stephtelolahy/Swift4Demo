@@ -4,7 +4,9 @@ Swift4 Demo
 ### Codable protocol
 A type that can convert itself into and out of an external representation (Json for example).
 
-- Example: parse array of burgers with compound objects
+- 01codable_A: Basic JSON parsing in Swift
+- 01codable_B: Using CODABLE Protocol
+- 01codable_C: Choosing Properties to Encode and Decode — CodingKeys, Custom date format, 
 
 ### Functions + tuple
 You can use a tuple type as the return type for a function to return multiple values as part of one compound return value.

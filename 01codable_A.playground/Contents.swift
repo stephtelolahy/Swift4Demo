@@ -55,13 +55,19 @@ extension Size {
 extension Photo {
     init?(_ json: [String: Any]) {
         guard let title = json["title"] as? String,
-        let urlString = json["url"] as? String,
-        let url = URL(string: urlString),
-        let metaData = json["metaData"] as? [String: String],
-        let typeString = json["type"] as? String,
-        let type = PhotoType(rawValue: typeString),
-        let sizeJson = json["size"] as? [String: Any],
-        let size = Size(sizeJson) else {
+            let urlString = json["url"] as? String,
+            let metaData = json["metaData"] as? [String: String],
+            let typeString = json["type"] as? String,
+            let sizeJson = json["size"] as? [String: Any] else {
+                return nil
+        }
+        guard let url = URL(string: urlString) else {
+            return nil
+        }
+        guard let type = PhotoType(rawValue: typeString) else {
+            return nil
+        }
+        guard let size = Size(sizeJson) else {
             return nil
         }
         let tags = json["tags"] as? [String]
