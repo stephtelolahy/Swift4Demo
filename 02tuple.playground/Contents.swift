@@ -44,14 +44,3 @@ print(massiveCities)
 /// Grouping sequences by computed key
 let groupedCities = Dictionary(grouping: cities.keys) { $0.first! }
 print(groupedCities)
-
-/// Multiline strings
-let longString = """
-When you write a string that spans multiple
-lines make sure you start its content on a
-line all of its own, and end it with three
-quotes also on a line of their own.
-Multi-line strings also let you write "quote marks"
-freely inside your strings, which is great!
-"""
-

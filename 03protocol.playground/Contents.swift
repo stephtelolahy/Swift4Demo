@@ -31,3 +31,16 @@ let a1 = [1, 2, 3]
 let a2 = [2, 3, 1]
 let containsSameElements = a1.containsSameElements(as: a2)
 
+//A feature that has finally made it to Swift from Objective-C is the ability to define a type that conforms to a class as well as a set of protocols [SE-0156]:
+protocol MyProtocol { }
+class View { }
+class ViewSubclass: View, MyProtocol { }
+
+class MyClass {
+    var delegate: (View & MyProtocol)?
+}
+
+let myClass = MyClass()
+//myClass.delegate = View() // error: cannot assign value of type 'View' to type '(View & MyProtocol)?'
+myClass.delegate = ViewSubclass()
+
