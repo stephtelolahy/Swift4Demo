@@ -1,7 +1,7 @@
 import Foundation
 
 //------------------------------------------------------------------------------
-//                             CODABLE Protocol
+//                             Using Codable Protocol
 //------------------------------------------------------------------------------
 
 let jsonString = """
@@ -41,7 +41,6 @@ enum PhotoType: String, Codable {
     case vegetable
 }
 
-if let jsonData = jsonString.data(using: .utf8),
-    let photo = try? JSONDecoder().decode(Photo.self, from: jsonData) {
-    print(photo)
-}
+let jsonData = jsonString.data(using: .utf8)!
+let photo = try! JSONDecoder().decode(Photo.self, from: jsonData)
+print(photo)

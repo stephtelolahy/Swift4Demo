@@ -1,10 +1,42 @@
 import Foundation
 
 //------------------------------------------------------------------------------
+//          Custom date format
+//------------------------------------------------------------------------------
+struct Podcast: Codable {
+    let name: String
+    let releaseDate: Date
+}
+
+let jsonPocast = """
+{
+"name":"Nostalgie en direct",
+"releaseDate":"2018-02-27"
+}
+"""
+
+extension DateFormatter {
+    static let iso8601DayOnly: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        //See more date formatting http://nsdateformatter.com
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        return formatter
+    }()
+}
+
+let decoder = JSONDecoder()
+decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601DayOnly)
+let jsonData = jsonPocast.data(using: .utf8)!
+let podcast = try! decoder.decode(Podcast.self, from: jsonData)
+print("Name: \(podcast.name) \nRelease date: \(podcast.releaseDate)")
+
+//------------------------------------------------------------------------------
 //              Choosing Properties to Encode and Decode — CodingKeys
 //------------------------------------------------------------------------------
 
-let jsonString = """
+let jsonPhoto = """
 {
 "name": "Apple",
 "link": "https:\\/\\/www.fruits.com\\/apple"
@@ -24,45 +56,9 @@ struct Photo: Codable {
     }
 }
 
-if let jsonData = jsonString.data(using: .utf8),
+if let jsonData = jsonPhoto.data(using: .utf8),
     let photo = try? JSONDecoder().decode(Photo.self, from: jsonData) {
     print(photo)
-}
-
-//------------------------------------------------------------------------------
-//          Custom date format
-//------------------------------------------------------------------------------
-//https://useyourloaf.com/blog/swift-codable-with-custom-dates/
-//http://nsdateformatter.com
-
-struct Podcast: Codable {
-    let name: String
-    let releaseDate: Date
-}
-
-// "releaseDate":"2017-11-16T11:30:00+00:00"
-let jsonPocast = """
-{
-"name":"Top Audio Podcasts",
-"releaseDate":"2018-02-26"
-}
-"""
-
-extension DateFormatter {
-    static let iso8601Full: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.timeZone = TimeZone(identifier: "UTC")
-        return formatter
-    }()
-}
-
-let decoder = JSONDecoder()
-decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-if let jsonData = jsonPocast.data(using: .utf8),
-    let podcast = try? decoder.decode(Podcast.self, from: jsonData) {
-    print("Release date: \(podcast.releaseDate)")
 }
 
 //------------------------------------------------------------------------------

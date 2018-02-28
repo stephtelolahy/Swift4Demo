@@ -80,8 +80,7 @@ extension Photo {
     }
 }
 
-if let jsonData = jsonString.data(using: .utf8),
-    let json = try JSONSerialization.jsonObject(with: jsonData) as? [String: Any],
-    let photo = Photo(json) {
-    print(photo)
-}
+let jsonData = jsonString.data(using: .utf8)!
+let json = try JSONSerialization.jsonObject(with: jsonData) as! [String: Any]
+let photo = Photo(json)!
+print(photo)
